@@ -1,0 +1,37 @@
+Desarrollo de procedimiento almacenado en cosmo db por medio de JS que extrae la información, exponiendo su consumo desde el proyecto postman AzureCosmoDb.postman_collection
+
+
+function testHero(item) {
+   
+    var collection = getContext().getCollection();
+    var response= getContext().getResponse();
+    console.log(item);
+    
+    var filter= collection.chain().filter(function(hero_db){
+       return hero_db.id===item
+    })
+     
+    var mapeoDatos= filter.map(function(hero_db){  
+    var actors1=hero_db.actors;
+    
+   function getDataActors(dataObject){
+        for(let datos in dataObject){
+               return dataObject[datos].map((dato)=>{
+                    return{
+                       actorname: dato.actorname,
+                       direccion: dato.direccion
+                    }
+                })
+         }    
+    };            
+    return {
+       id:hero_db.id,
+       name : hero_db.name,     
+       datosActor: getDataActors(actors1)  
+    }
+      
+    }).value();
+    var objJson = JSON.stringify(mapeoDatos);
+    
+    response.setBody(objJson.replace(/\/n/g,""));
+    }

@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "dfbeb78d-ffc3-4cd2-b44d-0451038049a5",
+		"name": "AzureCosmoDb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20115090"
+	},
+	"item": [
+		{
+			"name": "SP_hero",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "type%3Dmaster%26ver%3D1.0%26sig%3DHMnAykK7ZgTUFdlNaoLpkbBuyVe0Y3i1DrD7p5rS%2BhY%3D",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/query+json",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-version",
+						"value": "2015-08-06",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "replica-cosmo-ift.documents.azure.com",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "Tue, 08 Nov 2022 21:52:31 GMT",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-documentdb-partitionkey",
+						"value": "[\"id\"]",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"item\" : 3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://replica-cosmo-ift.documents.azure.com/dbs/hero_db/colls/hero/sprocs/testHero",
+					"protocol": "https",
+					"host": [
+						"replica-cosmo-ift",
+						"documents",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dbs",
+						"hero_db",
+						"colls",
+						"hero",
+						"sprocs",
+						"testHero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SP_SectorFinanDia",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var date = new Date(Date.now()).toUTCString();\r",
+							"\r",
+							"pm.globals.set(\"date\", date);\r",
+							"console.log(date)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "type%3Dmaster%26ver%3D1.0%26sig%3Drimk704l%2FJGEQhnKe%2BQb%2FT8XZRCJkEnzU5Oz%2BajuxLo%3D",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/query+json",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "Wed, 09 Nov 2022 15:43:05 GMT",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-version",
+						"value": "2015-08-06",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-documentdb-partitionkey",
+						"value": "[ \"NumeroIdentificacion\" ]",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item\": \"12345\"\r\n} "
+				},
+				"url": {
+					"raw": "https://replica-cosmo-ift.documents.azure.com/dbs/dbPruebaIft/colls/Container1/sprocs/SP_sectorFinanDia",
+					"protocol": "https",
+					"host": [
+						"replica-cosmo-ift",
+						"documents",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dbs",
+						"dbPruebaIft",
+						"colls",
+						"Container1",
+						"sprocs",
+						"SP_sectorFinanDia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SP_CuentasVigentes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "type%3Dmaster%26ver%3D1.0%26sig%3DNjDc4aqcD113vQJLL9oG9Bj4kMuS%2BqoeYgyD7tzoZe0%3D",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/query+json",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "Fri, 04 Nov 2022 20:38:40 GMT",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-version",
+						"value": "2015-08-06",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-documentdb-partitionkey",
+						"value": "[ \"NumeroIdentificacion\" ]",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://replica-cosmo-ift.documents.azure.com/dbs/dbPruebaIft/colls/Container1/sprocs/SP_cuentasVigentes_obligaciones",
+					"protocol": "https",
+					"host": [
+						"replica-cosmo-ift",
+						"documents",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dbs",
+						"dbPruebaIft",
+						"colls",
+						"Container1",
+						"sprocs",
+						"SP_cuentasVigentes_obligaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTokenSectorFinanciero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4040/api/get-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"get-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4040/api/get-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4040",
+					"path": [
+						"api",
+						"get-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostPermisos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2015-08-06",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "type%3Dmaster%26ver%3D1.0%26sig%3DUbuNKmVNA24zEAFPLRMDacpZcQ8YdRJDtNWtZFhCC78%3D",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "Tue, 08 Nov 2022 14:46:32 GMT",
+						"type": "text"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n    \"id\": \"a_permission\",  \r\n    \"permissionMode\": \"All\",  \r\n    \"resource\": \"dbs/dbPruebaIft/colls/Container1/sprocs/SP_sectorFinanDia\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://replica-cosmo-ift.documents.azure.com/dbs/dbPruebaIft/users/ajduran@bancodeoccidente.com.co/permissions",
+					"protocol": "https",
+					"host": [
+						"replica-cosmo-ift",
+						"documents",
+						"azure",
+						"com"
+					],
+					"path": [
+						"dbs",
+						"dbPruebaIft",
+						"users",
+						"ajduran@bancodeoccidente.com.co",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post-information-cifin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "d8fbe01fdfb44250b9261b51ccb30786",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"tipoIdentificacion\":\"1\",\r\n\"numeroIdentificacion\":\"900852741\",\r\n\"codigoInformacion\":\"169\",\r\n\"motivoConsulta\":\"24\"}"
+				},
+				"url": {
+					"raw": "https://apim-shaser-external-rg.azure-api.net/mockTest/mockTestPostCifin",
+					"protocol": "https",
+					"host": [
+						"apim-shaser-external-rg",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"mockTest",
+						"mockTestPostCifin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
