@@ -3,6 +3,7 @@
 const { countDocuments } = require("../models/clientes");
 var validator = require('validator');
 var Cliente = require('../models/clientes');
+var ClienteBizagi = require('../models/clienteBizagi');
 const clientes = require("../models/clientes");
 
 var controller={
@@ -13,6 +14,20 @@ var controller={
             basedaros:"MongoDB"
         });
     },
+
+    mockBizagi:(req,res)=>{
+        var params= req.body;
+        if(!params|| params== null){
+            return res.status(404).send({
+                status:'Error',
+                message:'No envio el cliente'
+            }); 
+        }
+            return res.status(200).send({
+                status: 'success',
+                nombre: params.nombre
+            })
+        },
 
     getToken:(req,res)=>{
         var crypto = require("crypto");  
@@ -98,6 +113,47 @@ var controller={
                     });
                     
                 })
+            }
+            else{
+                return res.status(200).send({
+                    status:'Error',
+                    mesagge:'Los datos no son validos'
+                });
+            }
+        
+    },
+
+    mockBizagiCliente:(req,res)=>{
+        var params= req.body;
+        console.log(params);
+        try {
+            var validate_tipoIdentificacion=!validator.isEmpty(params.tipoIdentificacion);
+            var validate_numeroIdentificacion=!validator.isEmpty(params.numeroIdentificacion);
+            var validate_rolInvolucrado=!validator.isEmpty(params.rolInvolucrado);
+            var validate_idEvento=!validator.isEmpty(params.idEvento);
+            var validate_numeroCaso=!validator.isEmpty(params.numeroCaso);
+
+            console.log(validate_tipoIdentificacion,validate_numeroIdentificacion,validate_rolInvolucrado,validate_idEvento,validate_numeroCaso);
+        } catch (error) {
+            console.log(validate_tipoIdentificacion,validate_numeroIdentificacion,validate_rolInvolucrado,validate_idEvento,validate_numeroCaso);
+            return res.status(200).send({
+                status:'Error',
+                message:'Faltan datos por enviar'
+            });
+        }
+            if(validate_tipoIdentificacion && validate_numeroIdentificacion && validate_rolInvolucrado && validate_idEvento &&validate_numeroCaso){
+                var clienteBizagi= new ClienteBizagi();
+                clienteBizagi.tipoIdentificacion= params.tipoIdentificacion;
+                clienteBizagi.numeroIdentificacion= params.numeroIdentificacion;
+                clienteBizagi.rolInvolucrado=params.rolInvolucrado;
+                clienteBizagi.idEvento=params.idEvento;
+                clienteBizagi.numeroCaso=params.numeroCaso;
+
+                return res.status(200).send({
+                    status:'success',
+                    cliente:clienteBizagi
+                });
+   
             }
             else{
                 return res.status(200).send({
